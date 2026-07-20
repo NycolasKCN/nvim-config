@@ -15,10 +15,10 @@ vim.keymap.set("v", "p", "\"_dP", { desc = "Paste without losing current registe
 vim.keymap.set("n", "<leader><esc>", ":noh<CR>", { desc = "Clear search highlights" })
 vim.keymap.set("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy menu" })
 
-vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "Go to window below" })
-vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "Go to window above" })
-vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "Go to window on the left" })
-vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "Go to window on the right" })
+-- vim.keymap.set("n", "<c-j>", "<c-w>j", { desc = "Go to window below" })
+-- vim.keymap.set("n", "<c-k>", "<c-w>k", { desc = "Go to window above" })
+-- vim.keymap.set("n", "<c-h>", "<c-w>h", { desc = "Go to window on the left" })
+-- vim.keymap.set("n", "<c-l>", "<c-w>l", { desc = "Go to window on the right" })
 
 vim.keymap.set("n", "<A-j>", ":resize +2<CR>", { desc = "Decrease window height" })
 vim.keymap.set("n", "<A-k>", ":resize -2<CR>", { desc = "Increase window height" })

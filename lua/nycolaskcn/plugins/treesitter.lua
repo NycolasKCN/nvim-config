@@ -34,7 +34,8 @@ return {
         "c",
         "java",
         "kotlin",
-        "python"
+        "python",
+        "qml"
       },
       incremental_selection = {
         enable = true,
