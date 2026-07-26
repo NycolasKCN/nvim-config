@@ -1,5 +1,5 @@
 local keymap = vim.keymap.set
-local s = { silent = true }
+local ops = { silent = true }
 
 --- REMAPS --------------
 
@@ -7,8 +7,10 @@ local s = { silent = true }
 -- keymap("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 -- keymap("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],  { desc = "Search and replace word under cursor" })
 
-keymap("n", "<Leader>w", "<cmd>w!<CR>", s) -- Save the current file
-keymap("n", "<Leader>q", "<cmd>q<CR>", s) -- Quit Neovim
+ops.desc = "Force buffer save"
+keymap("n", "<Leader>w", "<cmd>w!<CR>", ops) -- Save the current file
+ops.desc = "Close buffer"
+keymap("n", "<Leader>q", "<cmd>q<CR>", ops) -- Quit Neovim
 
 keymap({ "n", "v" }, "L", "$", { desc = "Go to end of line" })
 keymap({ "n", "v" }, "H", "0", { desc = "Go to start of line" })
@@ -48,9 +50,8 @@ keymap("n", "<C-S-W>", ':wa<CR>', { desc = 'Save all editors' })
 keymap("n", ",", "'", { desc = "Jump to mark" })
 
 --- KEYMAPS --------------
-keymap("n", "<leader>ps", '<cmd>lua vim.pack.update()<CR>')
+keymap("n", "<leader>ps", '<cmd>lua vim.pack.update()<CR>', { desc = "Vim pack update" })
 keymap("n", "m/", "<cmd>MarksListAll<CR>", { desc = "List all marks" })
-
 
 --- MASON --------------
 keymap("n", "<leader>M", '<cmd>Mason<CR>', { desc = "[Mason] Open mason UI" })
@@ -98,7 +99,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     keymap("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
     opts.desc = "show line diagnostics"
-    keymap("n", "<C-K>", vim.diagnostic.open_float, opts) -- show diagnostics for line
+    keymap("n", "<M-C-k>", vim.diagnostic.open_float, opts) -- show diagnostics for line
 
     opts.desc = "Show documentation for what is under cursor"
     keymap("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
