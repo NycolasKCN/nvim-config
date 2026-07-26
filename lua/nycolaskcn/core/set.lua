@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maploacalleader = "\\"
+vim.g.vimtex_view_method = "zathura"
 
 local opt = vim.opt
 opt.signcolumn = "yes:1"
@@ -30,3 +31,4 @@ opt.clipboard = "unnamedplus"
 opt.termguicolors = false
 opt.background = "dark"
 opt.guifont = "JetBrainsMono NFM:h16"
+
