@@ -1,4 +1,7 @@
-require("nycolaskcn.core")
-require("nycolaskcn.lazy")
-require("nycolaskcn.lsp")
+-- load core configuration
+require('nycolaskcn.core')
+
+-- load plugins
+require('nycolaskcn.plugins')
+
 

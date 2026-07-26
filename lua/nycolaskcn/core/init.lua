@@ -1,2 +1,3 @@
-require("nycolaskcn.core.set")
-require("nycolaskcn.core.remap")
+require('nycolaskcn.core.set')
+require('nycolaskcn.core.keymap')
+
