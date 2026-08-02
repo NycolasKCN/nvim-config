@@ -22,7 +22,6 @@ keymap({ "n", "v" }, "Y", "yy", { desc = "Yank line" })
 keymap("v", "p", "\"_dP", { desc = "Paste without losing current register" })
 
 keymap("n", "<leader><esc>", ":noh<CR>", { desc = "Clear search highlights" })
-keymap("n", "<leader>L", ":Lazy<CR>", { desc = "Open Lazy menu" })
 
 -- keymap("n", "<c-j>", "<c-w>j", { desc = "Go to window below" })
 -- keymap("n", "<c-k>", "<c-w>k", { desc = "Go to window above" })

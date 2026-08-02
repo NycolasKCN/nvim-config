@@ -1,8 +1,9 @@
-_G.__cached_neo_tree_selector = nil
-_G.__get_selector = function()
-	return _G.__cached_neo_tree_selector
-end
-
+-- neotree integration (dont wok)
+-- _G.__cached_neo_tree_selector = nil
+-- _G.__get_selector = function()
+-- 	return _G.__cached_neo_tree_selector
+-- end
+--
 require("bufferline").setup({
 	options = {
 		diagnostics = "nvim_lsp",
@@ -20,8 +21,8 @@ require("bufferline").setup({
 			},
 			{
 				filetype = "neo-tree",
-				raw = " %{%v:lua.__get_selector()%} ",
-				highlight = { sep = { link = "WinSeparator" } },
+				text = "File Explorer",
+				text_align = "center",
 				separator = "┃",
 			},
 		},

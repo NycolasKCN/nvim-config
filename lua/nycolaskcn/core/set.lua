@@ -3,13 +3,15 @@ vim.g.maploacalleader = "\\"
 vim.g.vimtex_view_method = "zathura"
 
 local opt = vim.opt
+
 opt.signcolumn = "yes:1"
 opt.tabstop = 2
 opt.softtabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
 opt.autoindent = false
-opt.linebreak = true
+opt.linebreak = false
+opt.wrap = false
 opt.breakindent = true
 opt.smartindent = true
 opt.smarttab = true

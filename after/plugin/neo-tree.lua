@@ -1,18 +1,19 @@
 require("neo-tree").setup({
 	event_handlers = {
-		{
-			event = "after_render",
-			handler = function(state)
-				if state.current_position == "left" or state.current_position == "right" then
-					vim.api.nvim_win_call(state.winid, function()
-						local str = require("neo-tree.ui.selector").get()
-						if str then
-							_G.__cached_neo_tree_selector = str
-						end
-					end)
-				end
-			end,
-		},
+		-- Bufferline integration (dont work)
+		-- {
+		-- 	event = "after_render",
+		-- 	handler = function(state)
+		-- 		if state.current_position == "left" or state.current_position == "right" then
+		-- 			vim.api.nvim_win_call(state.winid, function()
+		-- 				local str = require("neo-tree.ui.selector").get()
+		-- 				if str then
+		-- 					_G.__cached_neo_tree_selector = str
+		-- 				end
+		-- 			end)
+		-- 		end
+		-- 	end,
+		-- },
 	},
 	window = {
 		mappings = {
@@ -25,7 +26,7 @@ require("neo-tree").setup({
 			["g"] = function()
 				vim.cmd("Neotree focus git_status left", true)
 			end,
-			["D"] = function(state)
+			["D"] = function(state) -- Diff
 				local node = state.tree:get_node()
 				local log = require("neo-tree.log")
 				state.clipboard = state.clipboard or {}
@@ -55,7 +56,41 @@ require("neo-tree").setup({
 			end,
 		},
 	},
+	source_selector = {
+		winbar = true, -- toggle to show selector on winbar
+		statusline = false, -- toggle to show selector on statusline
+		show_scrolled_off_parent_node = false, -- boolean
+		sources = { -- table
+			{
+				source = "filesystem", -- string
+				display_name = " 󰉓 Files ", -- string | nil
+			},
+			{
+				source = "buffers", -- string
+				display_name = " 󰈚 Buffers ", -- string | nil
+			},
+			{
+				source = "git_status", -- string
+				display_name = " 󰊢 Git ", -- string | nil
+			},
+		},
+		content_layout = "start", -- string
+		tabs_layout = "equal", -- string
+		truncation_character = "…", -- string
+		tabs_min_width = nil, -- int | nil
+		tabs_max_width = nil, -- int | nil
+		padding = 0, -- int | { left: int, right: int }
+		separator = { left = "▏", right = "▕" }, -- string | { left: string, right: string, override: string | nil }
+		separator_active = nil, -- string | { left: string, right: string, override: string | nil } | nil
+		show_separator_on_edge = false, -- boolean
+		highlight_tab = "NeoTreeTabInactive", -- string
+		highlight_tab_active = "NeoTreeTabActive", -- string
+		highlight_background = "NeoTreeTabInactive", -- string
+		highlight_separator = "NeoTreeTabSeparatorInactive", -- string
+		highlight_separator_active = "NeoTreeTabSeparatorActive", -- string
+	},
 	filesystem = {
+		follow_current_file = { enabled = true },
 		components = {
 			harpoon_index = function(config, node, _)
 				local harpoon_list = require("harpoon"):list()
@@ -93,6 +128,44 @@ require("neo-tree").setup({
 				["o"] = "system_open",
 			},
 		},
+		filtered_items = {
+			-- when true, they will just be displayed differently than normal items
+			visible = false,
+			-- whether children of filtered parents should inherit their parent's highlight group
+			children_inherit_highlights = true,
+			hide_dotfiles = false,
+			hide_gitignored = true,
+			hide_ignored = true, -- hide files that are ignored by other gitignore-like files
+			-- other gitignore-like files, in descending order of precedence.
+			ignore_files = {
+				".neotreeignore",
+				".ignore",
+				-- ".rgignore"
+			},
+			hide_hidden = true, -- only works on Windows for hidden files/directories
+			hide_by_name = {
+				".DS_Store",
+				"thumbs.db",
+				"node_modules",
+			},
+			hide_by_pattern = {
+				--"*.meta",
+				--"*/src/*/tsconfig.json",
+			},
+			always_show = { -- remains visible even if other settings would normally hide it
+				--".gitignored",
+			},
+			always_show_by_pattern = { -- uses glob style patterns
+				".env*",
+			},
+			never_show = { -- remains hidden even if visible is toggled to true, this overrides always_show
+				--".DS_Store",
+				--"thumbs.db",
+			},
+			never_show_by_pattern = { -- uses glob style patterns
+				--".null-ls_*",
+			},
+		},
 	},
 
 	commands = {
@@ -123,11 +196,22 @@ require("neo-tree").setup({
 				deleted = "✖",
 				renamed = "➜",
 				untracked = "★",
-				ignored = "◌",
-				unstaged = "✗",
-				staged = "✓",
-				conflict = "",
+				ignored = "",
+				unstaged = "󰄱",
+				staged = "",
+				conflict = "",
 			},
+		},
+		indent = {
+			with_markers = true,
+			indent_marker = "│",
+			last_indent_marker = "└",
+			indent_size = 2,
+			-- expanders
+			with_expanders = true,
+			expander_collapsed = "",
+			expander_expanded = "",
+			expander_highlight = "NeoTreeExpander",
 		},
 	},
 })
@@ -138,9 +222,9 @@ keymap("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explo
 keymap("n", "<leader>ef", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Select current file on file explorer" })
 keymap("n", "<leader>er", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Refresh file explorer" })
 keymap("n", "<leader>ec", function()
-  require("neo-tree.command").execute({
-    action = "close_all_nodes",
-    source = "filesystem",
-    position = "left",
-  })
+	require("neo-tree.command").execute({
+		action = "close_all_nodes",
+		source = "filesystem",
+		position = "left",
+	})
 end, { desc = "Collapse file explorer" })
