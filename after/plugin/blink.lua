@@ -9,7 +9,7 @@ cmp.setup({
 		["<C-p>"] = {},
 		["<Tab>"] = {},
 		["<S-Tab>"] = {},
-		["<S-K>"] = { "show", "show_documentation", "hide_documentation" },
+		["<C-K>"] = { "show", "show_documentation", "hide_documentation" },
 		["<C-CR>"] = { "select_and_accept" },
 		["<C-k>"] = { "select_prev", "fallback" },
 		["<C-j>"] = { "select_next", "fallback" },

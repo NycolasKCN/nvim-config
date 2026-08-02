@@ -1,5 +1,3 @@
-vim.pack.add({
-})
 require("mason").setup({
     ---@since 1.0.0
     -- The directory in which to install packages.
