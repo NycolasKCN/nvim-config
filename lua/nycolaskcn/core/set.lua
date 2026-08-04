@@ -26,8 +26,8 @@ opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.undodir = os.getenv("HOME") .. "/.config/nvim/undodir"
-opt.undofile = false
+opt.undodir = os.getenv("HOME") .. "/.tmp/nvim/undo"
+opt.undofile = true
 opt.clipboard = "unnamedplus"
 
 opt.termguicolors = false
