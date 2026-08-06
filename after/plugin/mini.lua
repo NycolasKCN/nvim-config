@@ -98,13 +98,13 @@ require("mini.notify").setup({
 	-- Notifications about LSP progress
 	lsp_progress = {
 		-- Whether to enable showing
-		enable = true,
+		enable = false,
 
 		-- Notification level
-		level = "INFO",
+		level = "ERROR",
 
 		-- Duration (in ms) of how long last message should be shown
-		duration_last = 1500,
+		duration_last = 1000,
 	},
 
 	-- Window options

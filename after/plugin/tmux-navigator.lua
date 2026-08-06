@@ -1,7 +1,7 @@
-local keymap = vim.keymap.set
-
-keymap("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { desc = "Navigate left (tmux)" })
-keymap("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { desc = "Navigate down (tmux)" })
-keymap("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { desc = "Navigate up (tmux)" })
-keymap("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { desc = "Navigate right (tmux)" })
-keymap("n", "<C-\\>", "<Cmd>TmuxNavigatePrevious<CR>", { desc = "Navigate previous (tmux)" })
+-- local keymap = vim.keymap.set
+--
+-- keymap("n", "<C-h>", "<Cmd>TmuxNavigateLeft<CR>", { desc = "Navigate left (tmux)" })
+-- keymap("n", "<C-j>", "<Cmd>TmuxNavigateDown<CR>", { desc = "Navigate down (tmux)" })
+-- keymap("n", "<C-k>", "<Cmd>TmuxNavigateUp<CR>", { desc = "Navigate up (tmux)" })
+-- keymap("n", "<C-l>", "<Cmd>TmuxNavigateRight<CR>", { desc = "Navigate right (tmux)" })
+-- keymap("n", "<C-\\>", "<Cmd>TmuxNavigatePrevious<CR>", { desc = "Navigate previous (tmux)" })

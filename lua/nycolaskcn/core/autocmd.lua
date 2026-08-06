@@ -6,7 +6,7 @@ local highlight_group = augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
     pattern = '*',
     callback = function()
-        vim.highlight.on_yank({ timeout = 200 })
+        vim.highlight.on_yank({ timeout = 180 })
     end,
     group = highlight_group,
 })

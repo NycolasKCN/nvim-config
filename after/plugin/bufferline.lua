@@ -8,6 +8,7 @@ require("bufferline").setup({
 	options = {
 		diagnostics = "nvim_lsp",
 		mode = "buffers",
+		numbers = "ordinal",
 		separator_style = "slant",
 		always_show_bufferline = true,
 		enforce_regular_tabs = true,
@@ -34,6 +35,7 @@ local keymap = vim.keymap.set
 
 keymap("n", "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", { desc = "Toggle Pin" })
 keymap("n", "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", { desc = "Delete Non-Pinned Buffers" })
+keymap("n", "<leader>bc", "<Cmd>BufferLineCloseOthers<CR>", { desc = "Delete othter Buffers" })
 keymap("n", "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", { desc = "Delete Buffers to the Right" })
 keymap("n", "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", { desc = "Delete Buffers to the Left" })
 keymap("n", "<leader>bq", "<Cmd>b#<CR>:bd #<CR>", { desc = "Delete current Buffer and jump to previous" })

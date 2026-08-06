@@ -1,5 +1,6 @@
 local cmp = require("blink.cmp")
 cmp.build():pwait()
+
 cmp.setup({
 	fuzzy = { implementation = "prefer_rust_with_warning" },
 	signature = { enabled = true },
@@ -10,7 +11,7 @@ cmp.setup({
 		["<Tab>"] = {},
 		["<S-Tab>"] = {},
 		["<C-K>"] = { "show", "show_documentation", "hide_documentation" },
-		["<C-CR>"] = { "select_and_accept" },
+		["<CR>"] = { "select_and_accept", "fallback" },
 		["<C-k>"] = { "select_prev", "fallback" },
 		["<C-j>"] = { "select_next", "fallback" },
 		["<C-b>"] = { "scroll_documentation_down", "fallback" },
@@ -25,9 +26,13 @@ cmp.setup({
 	},
 
 	completion = {
+		keyword = { range = "full" },
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
+      window = {
+        border = "rounded"
+      }
 		},
 		-- Displays a preview of the selected item on the current line
 		ghost_text = {
@@ -36,9 +41,27 @@ cmp.setup({
 		menu = {
 			border = "single",
 			draw = {
+				components = {
+					kind_icon = {
+						text = function(ctx)
+							local icon = ctx.kind_icon
+							if vim.tbl_contains({ "Path" }, ctx.source_name) then
+								local dev_icon, _ = require("nvim-web-devicons").get_icon(ctx.label)
+								if dev_icon then
+									icon = dev_icon
+								end
+							else
+								icon = require("lspkind").symbol_map[ctx.kind] or ""
+							end
+
+							return icon .. ctx.icon_gap
+						end,
+					},
+				},
+				padding = 0, -- padding only on right side
 				columns = {
-					{ "label", "label_description", gap = 1 },
-					{ "kind_icon", "kind" },
+					{ "kind_icon", "label", "label_description", gap = 1 },
+					{ "kind" },
 				},
 			},
 		},
@@ -52,14 +75,14 @@ cmp.setup({
 	},
 
 	sources = {
-		default = { "lsp", "path", "snippets", "vimtex" },
+		default = { "lsp", "path", "snippets", "buffer", "vimtex" },
 		providers = {
 			lsp = {
 				name = "lsp",
 				enabled = true,
 				module = "blink.cmp.sources.lsp",
 				kind = "LSP",
-				min_keyword_length = 3,
+				min_keyword_length = 2,
 				score_offset = 90, -- the higher the number, the higher the priority
 			},
 			path = {
