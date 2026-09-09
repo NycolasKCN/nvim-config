@@ -20,10 +20,19 @@ conform.setup({
 	-- },
 })
 
-vim.keymap.set("n", "<leader>l", function()
-	conform.format({
-		lsp_fallback = true,
-		async = false,
-		timeout_ms = 1000,
-	})
-end, { desc = "Format buffer (conform)" })
+local wk = require("which-key")
+
+wk.add({
+	{
+		"<leader>l",
+		function()
+			conform.format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			})
+		end,
+		desc = "Format buffer (conform)",
+		mode = "n",
+	},
+})

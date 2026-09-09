@@ -21,10 +21,11 @@ local function toggle_telescope(harpoon_files)
   }):find()
 end
 
-vim.keymap.set("n", "<C-f>", function() toggle_telescope(harpoon:list()) end, { desc = "Open harpoon window (telescope)" })
-vim.keymap.set("n", "<C-d>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, { desc = "Open harpoon window" })
-vim.keymap.set("n", "<leader>a", function() harpoon:list():add() end, { desc = "Add to list (harpoon)" })
-
--- Toggle previous & next buffers stored within Harpoon list
-vim.keymap.set("n", "<M-P>", function() harpoon:list():prev() end, { desc = "Goto next buffer" })
-vim.keymap.set("n", "<M-N>", function() harpoon:list():next() end, { desc = "Goto prev buffer" })
+local wk = require("which-key")
+wk.add({
+	{ "<C-f>", function() toggle_telescope(harpoon:list()) end, desc = "Open harpoon window (telescope)", mode = "n" },
+	{ "<C-d>", function() harpoon.ui:toggle_quick_menu(harpoon:list()) end, desc = "Open harpoon window", mode = "n" },
+	{ "<leader>a", function() harpoon:list():add() end, desc = "Add to list (harpoon)", mode = "n" },
+	{ "<M-P>", function() harpoon:list():prev() end, desc = "Goto next buffer", mode = "n" },
+	{ "<M-N>", function() harpoon:list():next() end, desc = "Goto prev buffer", mode = "n" },
+})

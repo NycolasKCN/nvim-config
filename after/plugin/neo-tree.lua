@@ -216,15 +216,17 @@ require("neo-tree").setup({
 	},
 })
 
-local keymap = vim.keymap.set
-
-keymap("n", "<leader>ee", "<cmd>Neotree toggle<CR>", { desc = "Toggle file explorer" })
-keymap("n", "<leader>ef", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Select current file on file explorer" })
-keymap("n", "<leader>er", "<cmd>Neotree filesystem reveal left<CR>", { desc = "Refresh file explorer" })
-keymap("n", "<leader>ec", function()
-	require("neo-tree.command").execute({
-		action = "close_all_nodes",
-		source = "filesystem",
-		position = "left",
-	})
-end, { desc = "Collapse file explorer" })
+local wk = require("which-key")
+wk.add({
+	{ "<leader>e", group = "Explorer (Neotree)" },
+	{ "<leader>ee", "<cmd>Neotree toggle<CR>", desc = "Toggle file explorer", mode = "n" },
+	{ "<leader>ef", "<cmd>Neotree filesystem reveal left<CR>", desc = "Select current file on file explorer", mode = "n" },
+	{ "<leader>er", "<cmd>Neotree filesystem reveal left<CR>", desc = "Refresh file explorer", mode = "n" },
+	{ "<leader>ec", function()
+		require("neo-tree.command").execute({
+			action = "close_all_nodes",
+			source = "filesystem",
+			position = "left",
+		})
+	end, desc = "Collapse file explorer", mode = "n" },
+})

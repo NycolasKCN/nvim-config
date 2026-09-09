@@ -7,15 +7,40 @@ vim.api.nvim_create_autocmd("BufReadPre", {
 	end,
 })
 
+local wk = require("which-key")
 
--- load the session for the current directory
-vim.keymap.set("n", "<leader>qs", function() persistence.load() end, { desc = "[]" })
-
--- select a session to load
-vim.keymap.set("n", "<leader>qS", function() persistence.select() end)
-
--- load the last session
-vim.keymap.set("n", "<leader>ql", function() persistence.load({ last = true }) end)
-
--- stop Persistence => session won't be saved on exit
-vim.keymap.set("n", "<leader>qd", function() persistence.stop() end)
+wk.add({
+	{ "<leader>q", group = "Session/Persistence" },
+	{
+		"<leader>qs",
+		function()
+			persistence.load()
+		end,
+		desc = "Load session (cwd)",
+		mode = "n",
+	},
+	{
+		"<leader>qS",
+		function()
+			persistence.select()
+		end,
+		desc = "Select session",
+		mode = "n",
+	},
+	{
+		"<leader>ql",
+		function()
+			persistence.load({ last = true })
+		end,
+		desc = "Load last session",
+		mode = "n",
+	},
+	{
+		"<leader>qd",
+		function()
+			persistence.stop()
+		end,
+		desc = "Stop Persistence",
+		mode = "n",
+	},
+})

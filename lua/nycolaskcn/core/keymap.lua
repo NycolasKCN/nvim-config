@@ -9,8 +9,8 @@ local ops = { silent = true }
 
 ops.desc = "Force buffer save"
 keymap("n", "<Leader>w", "<cmd>w!<CR>", ops) -- Save the current file
-ops.desc = "Close buffer"
-keymap("n", "<Leader>q", "<cmd>q<CR>", ops) -- Quit Neovim
+-- ops.desc = "Close buffer"
+-- keymap("n", "<Leader>q", "<cmd>q<CR>", ops) -- Quit Neovim
 
 keymap({ "n", "v" }, "L", "$", { desc = "Go to end of line" })
 keymap({ "n", "v" }, "H", "0", { desc = "Go to start of line" })
@@ -91,7 +91,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end, { noremap = true, silent = true, desc = "Organize Imports" })
 
 		-- opts.desc = "Smart rename"
-		-- keymap.set("n", "gr", vim.lsp.buf.rename, opts) -- smart rename
+		-- keymap("n", "gr", vim.lsp.buf.rename, opts) -- smart rename
 
 		opts.desc = "Show buffer diagnostics"
 		keymap("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file

@@ -6,9 +6,9 @@ cmp.setup({
 	signature = { enabled = true },
 	keymap = {
 		preset = "default",
-		["<C-space>"] = {},
+		["<C-space>"] = { "show" },
 		["<C-p>"] = {},
-		["<Tab>"] = {},
+		["<Tab>"] = { "select_and_accept", "fallback" },
 		["<S-Tab>"] = {},
 		["<C-K>"] = { "show", "show_documentation", "hide_documentation" },
 		["<CR>"] = { "select_and_accept", "fallback" },
@@ -30,9 +30,9 @@ cmp.setup({
 		documentation = {
 			auto_show = true,
 			auto_show_delay_ms = 200,
-      window = {
-        border = "rounded"
-      }
+			window = {
+				border = "rounded",
+			},
 		},
 		-- Displays a preview of the selected item on the current line
 		ghost_text = {

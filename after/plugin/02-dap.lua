@@ -3,6 +3,7 @@ local dap = require("dap")
 local dap_utils = require("dap.utils")
 local ui = require("dapui")
 local dap_virtual_text = require("nvim-dap-virtual-text")
+local wk = require("which-key")
 
 -- Virtual text
 dap_virtual_text.setup()
@@ -221,32 +222,62 @@ dap.listeners.before.event_exited.dapui_config = function()
 end
 
 -- keymaps
-local keymap = vim.keymap.set
-
-keymap({ "n" }, "<leader>rd", function()
-	dap.run()
-end, { desc = "Run debug" })
-
-keymap({ "n" }, "<leader>dc", function()
-	dap.continue()
-end, { desc = "Continue" })
-
-keymap({ "n" }, "<leader>db", function()
-	dap.toggle_breakpoint()
-end, { desc = "Toggle Breakpoint" })
-
-keymap("n", "<Leader>dl", function()
-	dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
-end, { desc = "Add Loging point" })
-
-keymap({ "n" }, "<leader>dC", function()
-	dap.run_to_cursor()
-end, { desc = "Run to Cursor" })
-
-keymap({ "n" }, "<leader>dT", function()
-	dap.terminate()
-end, { desc = "Terminate" })
-
-keymap({ "n" }, "<leader>du", function()
-	ui.toggle()
-end, { desc = "Dap UI" })
+wk.add({
+	{ "<leader>d", group = "Debug Adapter" },
+	{
+		"<leader>dr",
+		function()
+			dap.run()
+		end,
+		desc = "Run debug",
+		mode = "n",
+	},
+	{
+		"<leader>dc",
+		function()
+			dap.continue()
+		end,
+		desc = "Continue",
+		mode = "n",
+	},
+	{
+		"<leader>db",
+		function()
+			dap.toggle_breakpoint()
+		end,
+		desc = "Toggle Breakpoint",
+		mode = "n",
+	},
+	{
+		"<leader>dl",
+		function()
+			dap.set_breakpoint(nil, nil, vim.fn.input("Log point message: "))
+		end,
+		desc = "Add Loging point",
+		mode = "n",
+	},
+	{
+		"<leader>dC",
+		function()
+			dap.run_to_cursor()
+		end,
+		desc = "Run to Cursor",
+		mode = "n",
+	},
+	{
+		"<leader>dT",
+		function()
+			dap.terminate()
+		end,
+		desc = "Terminate",
+		mode = "n",
+	},
+	{
+		"<leader>du",
+		function()
+			ui.toggle()
+		end,
+		desc = "Dap UI",
+		mode = "n",
+	},
+})

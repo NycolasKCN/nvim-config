@@ -31,19 +31,21 @@ require("bufferline").setup({
 })
 
 -- Keymaps
-local keymap = vim.keymap.set
-
-keymap("n", "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", { desc = "Toggle Pin" })
-keymap("n", "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", { desc = "Delete Non-Pinned Buffers" })
-keymap("n", "<leader>bc", "<Cmd>BufferLineCloseOthers<CR>", { desc = "Delete othter Buffers" })
-keymap("n", "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", { desc = "Delete Buffers to the Right" })
-keymap("n", "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", { desc = "Delete Buffers to the Left" })
-keymap("n", "<leader>bq", "<Cmd>b#<CR>:bd #<CR>", { desc = "Delete current Buffer and jump to previous" })
-keymap("n", "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>", { desc = "Prev Buffer" })
-keymap("n", "<TAB>", "<Cmd>BufferLineCycleNext<CR>", { desc = "Next Buffer" })
-keymap("n", "<leader>bmb", "<Cmd>BufferLineMovePrev<CR>", { desc = "Move buffer prev" })
-keymap("n", "<leader>bmf", "<Cmd>BufferLineMoveNext<CR>", { desc = "Move buffer next" })
-keymap("n", "<leader>bj", "<Cmd>BufferLinePick<CR>", { desc = "Pick Buffer" })
+local wk = require("which-key")
+wk.add({
+	{ "<leader>b", group = "Buffer" },
+	{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle Pin", mode = "n" },
+	{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete Non-Pinned Buffers", mode = "n" },
+	{ "<leader>bc", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete othter Buffers", mode = "n" },
+	{ "<leader>bl", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete Buffers to the Right", mode = "n" },
+	{ "<leader>bh", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete Buffers to the Left", mode = "n" },
+	{ "<leader>bq", "<Cmd>b#<CR>:bd #<CR>", desc = "Delete current Buffer and jump to previous", mode = "n" },
+	{ "<leader>bmb", "<Cmd>BufferLineMovePrev<CR>", desc = "Move buffer prev", mode = "n" },
+	{ "<leader>bmf", "<Cmd>BufferLineMoveNext<CR>", desc = "Move buffer next", mode = "n" },
+	{ "<leader>bj", "<Cmd>BufferLinePick<CR>", desc = "Pick Buffer", mode = "n" },
+	{ "<S-TAB>", "<Cmd>BufferLineCyclePrev<CR>", desc = "Prev Buffer", mode = "n" },
+	{ "<TAB>", "<Cmd>BufferLineCycleNext<CR>", desc = "Next Buffer", mode = "n" },
+})
 
 -- Fix bufferline when restoring a session
 vim.api.nvim_create_autocmd({ "BufAdd", "BufDelete" }, {
