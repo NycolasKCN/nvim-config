@@ -82,7 +82,7 @@ cmp.setup({
 				enabled = true,
 				module = "blink.cmp.sources.lsp",
 				kind = "LSP",
-				min_keyword_length = 2,
+				min_keyword_length = 1,
 				score_offset = 90, -- the higher the number, the higher the priority
 			},
 			path = {
@@ -105,14 +105,14 @@ cmp.setup({
 				enabled = true,
 				max_items = 3,
 				module = "blink.cmp.sources.buffer",
-				min_keyword_length = 2,
+				min_keyword_length = 3,
 				score_offset = 15, -- the higher the number, the higher the priority
 			},
 			snippets = {
 				name = "snippets",
 				enabled = true,
 				max_items = 15,
-				min_keyword_length = 2,
+				min_keyword_length = 1,
 				module = "blink.cmp.sources.snippets",
 				score_offset = 85, -- the higher the number, the higher the priority
 			},
@@ -121,7 +121,7 @@ cmp.setup({
 			-- credit: https://www.reddit.com/r/neovim/comments/1invqwg/comment/mcgttl5/?utm_source=share&utm_medium=web3x&utm_name=web3xcss&utm_term=1&utm_content=share_button
 			vimtex = {
 				name = "vimtex",
-				min_keyword_length = 2,
+				min_keyword_length = 1,
 				module = "blink.compat.source",
 				score_offset = 80,
 			},
