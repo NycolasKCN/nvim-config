@@ -12,6 +12,9 @@ keymap("n", "<Leader>w", "<cmd>w!<CR>", ops) -- Save the current file
 -- ops.desc = "Close buffer"
 -- keymap("n", "<Leader>q", "<cmd>q<CR>", ops) -- Quit Neovim
 
+keymap({ "n", "v" }, "k", "gk", { desc = "Up" })
+keymap({ "n", "v" }, "j", "gj", { desc = "Down" })
+
 keymap({ "n", "v" }, "L", "$", { desc = "Go to end of line" })
 keymap({ "n", "v" }, "H", "0", { desc = "Go to start of line" })
 
@@ -33,7 +36,7 @@ keymap("n", "<M-C-S-k>", ":resize -2<CR>", { desc = "Increase window height" })
 keymap("n", "<M-C-S-h>", ":vertical resize +2<CR>", { desc = "Decrease window width" })
 keymap("n", "<M-C-S-l>", ":vertical resize -2<CR>", { desc = "Increase window width" })
 
-keymap("n", "<C-o>", "o<esc>", { desc = "Insert empty line below" })
+keymap("n", "<C-M-O>", "o<esc>", { desc = "Insert empty line below" })
 keymap("n", "<C-S-O>", "O<esc>", { desc = "Insert empty line above" })
 
 -- keymap("n", "<TAB>", ":tabn<CR>", { desc = "Next Tab" })

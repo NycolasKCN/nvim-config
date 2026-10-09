@@ -91,6 +91,7 @@ require("neo-tree").setup({
 	},
 	filesystem = {
 		follow_current_file = { enabled = true },
+		hijack_netrw_behavior = "open_current",
 		components = {
 			harpoon_index = function(config, node, _)
 				local harpoon_list = require("harpoon"):list()
@@ -219,14 +220,34 @@ require("neo-tree").setup({
 local wk = require("which-key")
 wk.add({
 	{ "<leader>e", group = "Explorer (Neotree)" },
-	{ "<leader>ee", "<cmd>Neotree toggle<CR>", desc = "Toggle file explorer", mode = "n" },
-	{ "<leader>ef", "<cmd>Neotree filesystem reveal left<CR>", desc = "Select current file on file explorer", mode = "n" },
-	{ "<leader>er", "<cmd>Neotree filesystem reveal left<CR>", desc = "Refresh file explorer", mode = "n" },
-	{ "<leader>ec", function()
-		require("neo-tree.command").execute({
-			action = "close_all_nodes",
-			source = "filesystem",
-			position = "left",
-		})
-	end, desc = "Collapse file explorer", mode = "n" },
+	{
+		"<leader>ee",
+		"<cmd>Neotree toggle<CR>",
+		desc = "Toggle file explorer",
+		mode = "n",
+	},
+	{
+		"<leader>ef",
+		"<cmd>Neotree filesystem reveal left<CR>",
+		desc = "Select current file on file explorer",
+		mode = "n",
+	},
+	{
+		"<leader>er",
+		"<cmd>Neotree filesystem reveal left<CR>",
+		desc = "Refresh file explorer",
+		mode = "n",
+	},
+	{
+		"<leader>ec",
+		function()
+			require("neo-tree.command").execute({
+				action = "close_all_nodes",
+				source = "filesystem",
+				position = "left",
+			})
+		end,
+		desc = "Collapse file explorer",
+		mode = "n",
+	},
 })

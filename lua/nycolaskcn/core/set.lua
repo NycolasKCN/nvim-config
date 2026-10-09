@@ -19,18 +19,22 @@ opt.smarttab = true
 opt.number = true
 opt.relativenumber = true
 opt.cursorline = true
+opt.colorcolumn = "80"
 opt.scrolloff = 8
+
+opt.splitright = true
+opt.splitbelow = true
 
 opt.hlsearch = true
 opt.incsearch = true
 opt.ignorecase = true
 opt.smartcase = true
 
-opt.undodir = os.getenv("HOME") .. "/.tmp/nvim/undo"
+opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undo"
 opt.undofile = true
 opt.clipboard = "unnamedplus"
 
 opt.termguicolors = false
 opt.background = "dark"
-opt.guifont = "JetBrainsMono NFM:h16"
+opt.guifont = "JetBrainsMono NFM:h14"
 
