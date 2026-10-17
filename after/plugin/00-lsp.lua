@@ -193,6 +193,7 @@ require("mason-lspconfig").setup({
 		"lua_ls",
 		"pyright",
 		"clangd",
+		"qmlls",
 	},
 })
 
@@ -211,12 +212,13 @@ vim.lsp.enable({
 	"cssls",
 	"eslint",
 	"lua_ls",
-  "jdtls",
+	"jdtls",
 	"pyright",
 	"clangd",
 	"prettier",
 	"eslint_d",
 	"stylua",
+	"qmlls",
 })
 
 local severity = vim.diagnostic.severity

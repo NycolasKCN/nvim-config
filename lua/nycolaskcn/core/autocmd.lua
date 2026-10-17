@@ -12,7 +12,7 @@ autocmd("TextYankPost", {
 })
 
 autocmd("FileType", {
-	pattern = { "java", "kotlin" },
+	pattern = { "java", "kotlin", "qml" },
 	callback = function()
 		vim.opt_local.shiftwidth = 4
 		vim.opt_local.tabstop = 4
@@ -20,3 +20,4 @@ autocmd("FileType", {
 		vim.opt_local.colorcolumn = "120"
 	end,
 })
+
