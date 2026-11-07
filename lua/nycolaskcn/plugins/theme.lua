@@ -5,8 +5,8 @@ vim.pack.add({
 })
 
 vim.g.moonflyCursorColor = true
-vim.g.moonflyTerminalColors = true
-vim.g.moonflyTransparent = true
+vim.g.moonflyTerminalColors = false
+vim.g.moonflyTransparent = false
 vim.g.moonflyWinSeparator = 2
 vim.g.moonflyItalics = false
 vim.o.winborder = "single"
